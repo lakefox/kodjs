@@ -1,0 +1,22 @@
+{
+  "name": "kodjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "web": "npx browserify -p esmify index.mjs | terser --compress --mangle > ./dist/kod.min.js"
+  },
+  "author": "LAKEFOX",
+  "license": "MIT",
+  "dependencies": {
+    "css": "^3.0.0",
+    "highlight.js": "^11.7.0"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0",
+    "canvas": "^2.11.0",
+    "esmify": "^2.1.1"
+  }
+}
