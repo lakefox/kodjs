@@ -89,7 +89,6 @@ function kod() {
                 }
 
             }
-            console.log(tokens);
             for (let a = 0; a < tokens.length; a++) {
                 const token = tokens[a];
                 let classes = [];
