@@ -65,13 +65,15 @@ function kod() {
             tokens.forEach((e) => { cc += e.content });
             let escaped = cc.match(/\&[0-9A-Za-z\#]+\;/g)
             let escapedMap = {};
-            escaped.forEach((e) => {
-                let ind = cc.indexOf(e);
-                cc = cc.split("");
-                cc.splice(ind, e.length, code.slice(ind, ind + 1));
-                escapedMap[e] = code.slice(ind, ind + 1)
-                cc = cc.join("");
-            })
+            if (escaped) {
+                escaped.forEach((e) => {
+                    let ind = cc.indexOf(e);
+                    cc = cc.split("");
+                    cc.splice(ind, e.length, code.slice(ind, ind + 1));
+                    escapedMap[e] = code.slice(ind, ind + 1)
+                    cc = cc.join("");
+                })
+            }
             let oldTokens = tokens.slice(0);
             let addedItems = 0;
             for (let a = 0; a < oldTokens.length; a++) {
