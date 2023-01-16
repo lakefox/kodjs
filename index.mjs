@@ -38,6 +38,7 @@ function kod() {
     this.print = (code) => {
         return new Promise(async (resolve, reject) => {
             let lineHeight = 22;
+            // let lineHeight = 22;
             let padding = {
                 top: 5,
                 left: 20
@@ -45,18 +46,12 @@ function kod() {
             let html = hljs.highlightAuto(code).value;
 
             let tokens = tokenise(html);
-            let lines = countOccurrences(html, "\n") + 2;
             let ctx = cn.getContext("2d");
             ctx.font = `20px Monospace`;
             let longest = code.split("\n").sort((a, b) => { return b.length - a.length })[0];
             let width = ctx.measureText(longest).width + 20 + padding.left;
-            let height = (lineHeight * lines) + (padding.top * 4);
             cn.width = width;
-            cn.height = height;
             ctx.width = width;
-            ctx.height = height;
-            ctx.fillStyle = bg;
-            ctx.fillRect(0, 0, width, height)
 
             let leftPad = padding.left;
             let topPad = padding.top + lineHeight;
@@ -91,6 +86,12 @@ function kod() {
                 }
 
             }
+            let lineCount = tokens.reduce((a, e) => { return (a || 0) + e.content.split("\n").length - 1 }) + 2;
+            let height = (lineHeight * lineCount) + (padding.top * 2);
+            cn.height = height;
+            ctx.height = height;
+            ctx.fillStyle = bg;
+            ctx.fillRect(0, 0, width, height);
             for (let a = 0; a < tokens.length; a++) {
                 const token = tokens[a];
                 let classes = [];
