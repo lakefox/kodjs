@@ -38,7 +38,6 @@ function kod() {
     this.print = (code) => {
         return new Promise(async (resolve, reject) => {
             let lineHeight = 22;
-            // let lineHeight = 22;
             let padding = {
                 top: 5,
                 left: 20
